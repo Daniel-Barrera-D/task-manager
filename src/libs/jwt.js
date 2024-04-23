@@ -1,10 +1,12 @@
 import jwt from 'jsonwebtoken';
+import { OTHER_TOKEN_SECRET, TOKEN_SECRET } from '../config.js';
 
 export function createAccessToken(payload) {
+    console.log(TOKEN_SECRET);
     return new Promise((resolve, reject) => {
         jwt.sign(
             payload,
-            process.env.TOKEN_SECRET,
+            TOKEN_SECRET,
             {
                 expiresIn: "1d",
             },
@@ -20,7 +22,7 @@ export function createPasswordResetToken(payload) {
     return new Promise((resolve, reject) => {
         jwt.sign(
             payload,
-            process.env.OTHER_TOKEN_SECRET,
+            OTHER_TOKEN_SECRET,
             {
                 expiresIn: "5m"
             },

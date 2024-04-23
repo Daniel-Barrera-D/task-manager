@@ -1,6 +1,7 @@
 import User from '../models/user.model.js';
 import nodemailer from 'nodemailer';
 import { createPasswordResetToken } from '../libs/jwt.js';
+import { EMAIL_ADDRESS, EMAIL_PASSWORD, FRONT_URI } from '../config.js';
 
 export const forgotPassword = async(req, res) => {
 
@@ -22,15 +23,15 @@ export const forgotPassword = async(req, res) => {
             const transporter = nodemailer.createTransport({
                 service: "gmail",
                 auth: {
-                    user: `${process.env.EMAIL_ADDRESS}`,
-                    pass: `${process.env.EMAIL_PASSWORD}`
+                    user: `${EMAIL_ADDRESS}`,
+                    pass: `${EMAIL_PASSWORD}`
                 }
             });
 
-            const emailPort = process.env.EMAIL_PORT;
+            const emailPort = FRONT_URI;
 
             const mailOptions = {
-                from: process.env.EMAIL_ADDRESS,
+                from: EMAIL_ADDRESS,
                 to: `${userFound.email}`,
                 subject: 'Link to reset your account password',
                 html: `<h1>You have 5 minutes to reset your password with the following link: ${emailPort}/reset-password/${userFound._id}/${tokenReset}</h1>`

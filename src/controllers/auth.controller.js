@@ -2,6 +2,7 @@ import User from '../models/user.model.js';
 import bcrypt from 'bcryptjs';
 import { createAccessToken } from '../libs/jwt.js';
 import jwt from 'jsonwebtoken';
+import { TOKEN_SECRET } from '../config.js';
 // import { TOKEN_SECRET } from '../config.js';
 
 export const register = async (req, res) => {
@@ -96,7 +97,7 @@ export const verifyToken = async (req, res) => {
 
     if(!token) return res.status(401).json({ message: "Unauthorized" });
 
-    jwt.verify(token, process.env.TOKEN_SECRET, async (err, user) => {
+    jwt.verify(token, TOKEN_SECRET, async (err, user) => {
         if(err) return res.status(401).json({ message: "Unauthorized" });
 
         const userFound = await User.findById(user.id);
