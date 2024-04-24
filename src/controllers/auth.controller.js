@@ -2,7 +2,7 @@ import User from '../models/user.model.js';
 import bcrypt from 'bcryptjs';
 import { createAccessToken } from '../libs/jwt.js';
 import jwt from 'jsonwebtoken';
-import { TOKEN_SECRET } from '../config.js';
+import { FRONT_URI, TOKEN_SECRET } from '../config.js';
 // import { TOKEN_SECRET } from '../config.js';
 
 export const register = async (req, res) => {
@@ -56,7 +56,7 @@ export const login = async (req, res) => {
 
         const token = await createAccessToken({ id: userFound._id });
 
-        res.cookie('token', token);
+        res.cookie('token', token, { sameSite: 'strict'});
 
         res.json({
             id: userFound._id,

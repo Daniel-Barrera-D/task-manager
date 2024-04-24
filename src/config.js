@@ -13,6 +13,6 @@ export const OTHER_TOKEN_SECRET = process.env.OTHER_TOKEN_SECRET
 
 export const EMAIL_ADDRESS = process.env.EMAIL_ADDRESS
 export const EMAIL_PASSWORD = process.env.EMAIL_PASSWORD
-export const FRONT_URI = process.env.FRONT_URI
+export const FRONT_URI = process.env.FRONT_URI || 'http://localhost:5173'
 
 console.log("puerto",process.env.PORT);
