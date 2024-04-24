@@ -7,8 +7,8 @@ import taskRoutes from "./routes/tasks.routes.js";
 import usersRouters from "./routes/users.routes.js" 
 import cors from "cors";
 import { FRONT_URI } from './config.js';
-// import { dirname, join } from 'path';
-// import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
 
 // if(process.env.NODE_ENV !== 'production') {
 //     dotenv.config();
@@ -16,7 +16,7 @@ import { FRONT_URI } from './config.js';
 
 const app = express();
 
-// const __dirname = dirname(fileURLToPath(import.meta.url));
+const __dirname = dirname(fileURLToPath(import.meta.url));
 app.use(cors({
     origin: FRONT_URI,
     credentials: true
@@ -33,10 +33,10 @@ app.use('/api', taskRoutes);
 app.use('/api', usersRouters);
 
 // console.log(__dirname);
-// app.use(express.static(join(__dirname, '../client/dist')));
+app.use(express.static(join(__dirname, '../client/dist')));
 
-// app.get('*', (req, res) => {
-//     res.sendFile((join(__dirname, '../client/dist/index.html')));
-// })
+app.get('*', (req, res) => {
+    res.sendFile((join(__dirname, '../client/dist/index.html')));
+})
 
 export default app;
