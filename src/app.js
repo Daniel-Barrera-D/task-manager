@@ -18,7 +18,7 @@ const app = express();
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 app.use(cors({
-    origin: FRONT_URI,
+    origin: 'https://backend-task-manager-pfc6.onrender.com',
     credentials: true
 }));
 
