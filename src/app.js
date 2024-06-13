@@ -18,7 +18,7 @@ const app = express();
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 app.use(cors({
-    origin: 'https://task-manager-nine-flax.vercel.app',
+    origin: ORIGIN_CORS,
     credentials: true
 }));
 
