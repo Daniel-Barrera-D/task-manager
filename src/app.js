@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser";
 import taskRoutes from "./routes/tasks.routes.js";
 import usersRouters from "./routes/users.routes.js" 
 import cors from "cors";
-import { FRONT_URI } from './config.js';
+import { FRONT_URI, ORIGIN_CORS } from './config.js';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -18,7 +18,7 @@ const app = express();
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 app.use(cors({
-    origin: 'https://backend-task-manager-pfc6.onrender.com',
+    origin: ORIGIN_CORS,
     credentials: true
 }));
 
